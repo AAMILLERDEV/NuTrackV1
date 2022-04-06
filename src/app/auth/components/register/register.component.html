@@ -1,0 +1,113 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ms-3" href="#">Nu-Track</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink] = "['/login']" routerLinkActive = "active">Login</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink] = "['/register']" routerLinkActive = "active">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class = 'row m-0 w-100'>
+  <div class = 'col-md-4 col offset-4 offset-lg-4 mt-5' *ngIf = '!this.isLogin'>
+    <h4>Register</h4>
+    <small class="alert-danger" id="errorMessage"></small>
+    <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+      <div class = 'form-group'>
+        <div class = 'form-group'>
+          <input class = 'form-control' type = "text" name = "firstName"
+                 placeholder="First Name" ngModel
+                 #firstName = "ngModel"
+                 required minlength="2" maxlength="20">
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || myform.submitted)">
+            <small *ngIf="firstName.errors['required']" class="alert-danger">
+              Please enter your first name.
+            </small>
+            <small *ngIf="firstName.errors['minlength']" class="alert-danger">
+              Your first name must be at least 2 characters long.
+            </small>
+          </div>
+        </div>
+        <input class ='form-control' type ="text" name="lastName"
+               placeholder="Last Name" ngModel
+               #lastName = "ngModel"
+               required minlength="2" maxlength="20">
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || myform.submitted)">
+          <small *ngIf="lastName.errors['required']" class="alert-danger">
+            Please enter your last name.
+          </small>
+          <small *ngIf="lastName.errors['minlength']" class="alert-danger">
+            Your last name must be at least 2 characters long.
+          </small>
+        </div>
+      </div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "text" name = "username"
+               placeholder = "Username" ngModel
+               #username = "ngModel"
+               required minlength="2" maxlength="60">
+        <div *ngIf="username.invalid && (username.dirty || username.touched || myform.submitted)">
+          <small *ngIf="username.errors['required']" class="alert-danger">
+            Please enter your username.
+          </small>
+          <small *ngIf="username.errors['minlength']" class="alert-danger">
+            Your username must be at least 2 characters long.
+          </small>
+        </div>
+      </div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "email" name = "email"
+               placeholder = "Email" ngModel
+               #email = "ngModel"
+               required maxlength="60" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?">
+        <div *ngIf="email.invalid && (email.dirty || email.touched || myform.submitted)">
+          <small *ngIf="email.errors['required']" class="alert-danger">
+            Please enter your email.
+          </small>
+          <small *ngIf="email.errors['pattern']" class="alert-danger">
+            Please enter a valid email.
+          </small>
+        </div>
+      </div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "password" name = "password"
+               placeholder = "Password" ngModel
+               #password = "ngModel"
+               required minlength="8" maxlength="60">
+        <div *ngIf="password.invalid && (password.dirty || password.touched || myform.submitted)">
+          <small *ngIf="password.errors['required']" class="alert-danger">
+            Please enter your password.
+          </small>
+          <small *ngIf="password.errors['minlength']" class="alert-danger">
+            Your password must be at least 8 characters long.
+          </small>
+        </div>
+      </div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "password" name = "verifyPassword"
+               placeholder = "Verify Password" ngModel
+               #verifyPassword = "ngModel"
+               required maxlength="60">
+        <div *ngIf="verifyPassword.invalid && (verifyPassword.dirty || verifyPassword.touched || myform.submitted)">
+          <small *ngIf="verifyPassword.errors['required']" class="alert-danger">
+            Please verify your password.
+          </small>
+        </div>
+        <small *ngIf="password.value !== verifyPassword.value" class="alert-danger">
+          Your password does not match.
+        </small>
+      </div>
+      <div class = 'form-group'>
+        <input type="hidden" name="isAdmin" value='' ngModel>
+      </div>
+      <input class= 'btn btn-outline-info col-lg-5' type = "submit" value = "Register">
+    </form>
+  </div>
+</div>

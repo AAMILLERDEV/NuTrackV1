@@ -1,0 +1,40 @@
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ms-3" href="#">Nu-Track</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="nav navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink] = "['/login']" routerLinkActive = "active">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink] = "['/register']" routerLinkActive = "active">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class = 'row m-0 w-100'>
+  <div class = 'col-md-4 col offset-4 offset-lg-4 mt-5' *ngIf = '!this.isLogin'>
+    <h4>Login</h4>
+    <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+      <div class="alert-danger" id="errorMessage"></div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "text" name = "username" placeholder = "Username" ngModel>
+      </div>
+      <div class = 'form-group'>
+        <input class = 'form-control' type = "password" name = "password" placeholder = "Password" ngModel>
+      </div>
+      <input class= 'btn btn-outline-info col-lg-5' type = "submit" value = "Login">
+      <div>
+        <a  class="btn btn-primary col-lg-5" href="/register">Click here to Register!</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
